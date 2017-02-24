@@ -81,6 +81,13 @@ class Zenoss(object):
         params = {'dsnames': dsnames, 'start': start, 'end': end, 'function': function}
         return ast.literal_eval(self.__session.get(url, params=params).content)
 
+    def get_device_classes(self):
+        '''Get a list of device classes.
+
+        '''
+        log.info('Getting all device classes')
+        return self.__router_request('DeviceRouter', 'getDeviceClasses')
+        
     def get_devices(self, device_class='/zport/dmd/Devices', limit=None):
         '''Get a list of all devices.
 
